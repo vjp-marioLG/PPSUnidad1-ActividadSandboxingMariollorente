@@ -1,37 +1,36 @@
 # Reflexión personal sobre las medidas de seguridad en los lenguajes de programación
 
-La seguridad en los lenguajes de programación se ha convertido en una preocupación central a medida que el software se ha vuelto el pilar de sistemas críticos: infraestructuras, comunicaciones, servicios financieros y entornos empresariales. No todos los lenguajes incluyen las mismas protecciones, y muchos fueron diseñados en épocas donde la seguridad no era una prioridad. Por ello, resulta interesante observar cómo las características de cada lenguaje influyen directamente en la capacidad de desarrollar software seguro.
+Los lenguajes de programación han evolucionado enormemente, no solo para mejorar la productividad del desarrollador o el rendimiento del software, sino también para incorporar medidas que reduzcan errores y mitiguen riesgos de seguridad. Aunque el documento proporcionado se centra más en la clasificación, paradigmas y ejecución de los lenguajes, es posible relacionar estas características con la seguridad que cada tipo de lenguaje puede ofrecer.
 
-## Seguridad por diseño vs. seguridad por práctica
+## Seguridad según el nivel del lenguaje
 
-Hay lenguajes que integran mecanismos de seguridad "por diseño", es decir, incorporan protecciones que reducen automáticamente ciertos riesgos. Por ejemplo:
+Los lenguajes de bajo nivel, como ensamblador o lenguaje máquina, proporcionan un control total del hardware, pero precisamente por eso requieren una responsabilidad absoluta por parte del programador. En estos lenguajes no existen mecanismos de protección automáticos: no hay gestión de memoria segura, ni detección de accesos indebidos, ni protección contra desbordamientos. Esto los hace muy poderosos, pero también muy propensos a errores graves.
 
-- **Rust** destaca por su sistema de préstamos y ownership, que evita errores de memoria clásicos como *use-after-free*, *double free* o desbordamientos de memoria. Esto reduce una enorme categoría de vulnerabilidades sin cargar al programador con verificaciones manuales.
-- **Java o C#** usan máquinas virtuales que gestionan la memoria y proporcionan recolección de basura. Esto previene ciertos errores típicos de C o C++, aunque introduce otros desafíos, como problemas de rendimiento o ataques a la propia máquina virtual.
+En contraste, los lenguajes de alto nivel integran diversas capas de abstracción que ayudan a evitar fallos comunes. La gestión automática de memoria, el tipado más estricto o las bibliotecas estandarizadas reducen enormemente los riesgos de seguridad derivados de errores humanos. Esta capa adicional de seguridad es una de las razones por las que hoy en día se prefieren en la mayoría de desarrollos, especialmente en aplicaciones críticas.
 
-Por otro lado, lenguajes como **C y C++** ofrecen gran control y eficiencia, pero dependen casi por completo de la pericia del programador para evitar vulnerabilidades. Su flexibilidad se convierte en un riesgo si no se aplican prácticas estrictas.
+## Influencia del tipo de ejecución en la seguridad
 
-## La influencia del ecosistema
+Los lenguajes compilados como C o C++ son muy eficientes, pero su cercanía al hardware deja margen para vulnerabilidades históricas: desbordamientos de búfer, uso de memoria ya liberada o accesos no controlados. Muchos incidentes de seguridad se originan en estos fallos.
 
-La seguridad de un lenguaje no depende únicamente de su sintaxis o sus mecanismos internos. El ecosistema que lo rodea también juega un papel crucial:
+Los lenguajes interpretados, como Python o JavaScript, al ejecutarse dentro de un entorno controlado (un intérprete o una sandbox del navegador) suelen evitar ciertos tipos de vulnerabilidades. Aunque esto no los hace invulnerables, sí dificulta ciertos ataques relacionados con la memoria.
 
-- **Herramientas de análisis estático**, como Clippy en Rust o SonarQube para múltiples lenguajes, ayudan a detectar fallos que podrían pasar desapercibidos.
-- **Gestores de paquetes**, como npm, pip o Maven, pueden convertirse en vectores de ataque si no se controlan las dependencias externas.
-- **Frameworks y librerías** marcan la diferencia entre un desarrollo seguro o vulnerable. Un lenguaje muy robusto puede volverse inseguro si se utilizan componentes mal mantenidos.
+Los lenguajes híbridos, como Java o C#, introducen una capa adicional: la máquina virtual. Esta capa puede añadir comprobaciones de seguridad, verificar el bytecode y aislar la ejecución. Por eso, históricamente, Java ha sido conocido por incorporar medidas como el *bytecode verifier*, el *security manager* (aunque en desuso) y el aislamiento mediante clases y namespaces.
 
-## Equilibrio entre seguridad y usabilidad
+## Seguridad desde los paradigmas de programación
 
-Otra reflexión importante es que la seguridad no siempre viene sin coste. Lenguajes muy estrictos como Rust pueden presentar una curva de aprendizaje más pronunciada, lo cual puede generar resistencia entre los desarrolladores. Otros lenguajes, como Python o JavaScript, sacrifican parte del control en favor de la rapidez y simplicidad, lo que a veces dificulta asegurar ciertas partes del programa.
+La forma en la que se estructura el código también afecta a la seguridad:
 
-Al final, la seguridad debe ser vista como un equilibrio entre:
+- **Programación estructurada y modular**: favorece un código más ordenado y predecible, lo que reduce errores lógicos.
+- **Programación orientada a objetos**: aporta encapsulación, evitando que partes del código accedan o modifiquen datos internos de forma indebida.
+- **Programación funcional**: minimiza el uso de estados mutables, lo que reduce errores difíciles de rastrear y ciertos ataques basados en manipulación del estado.
+- **Programación declarativa**: al centrarse en el resultado más que en el proceso, reduce las posibilidades de escribir instrucciones inseguras.
 
-- la protección automática que ofrece el lenguaje,
-- la facilidad de escritura y mantenimiento del código,
-- las herramientas disponibles,
-- y el tipo de proyecto que se quiere desarrollar.
+El multiparadigma moderno permite combinar estas ventajas, y lenguajes como Python, Java o Scala se benefician de ello.
 
-## Conclusión
+## Conclusión personal
 
-Ningún lenguaje es completamente seguro por sí mismo, pero algunos proporcionan un punto de partida mucho más sólido. La seguridad es una responsabilidad compartida entre el diseño del lenguaje, las herramientas, las buenas prácticas y la cultura del desarrollador.
+En mi opinión, la seguridad en un lenguaje de programación no depende solo de sus características técnicas, sino también del ecosistema que lo rodea: sus herramientas, su comunidad, las prácticas recomendadas y el grado de madurez del entorno. Sin embargo, es evidente que ciertos lenguajes incorporan más medidas de seguridad que otros.
 
-En un mundo donde las amenazas evolucionan constantemente, elegir un lenguaje que incorpore medidas de seguridad avanzadas —o al menos que facilite su implementación— es una decisión estratégica que puede marcar la diferencia entre un sistema robusto y uno vulnerable.
+Lenguajes modernos como Rust, Go o Swift se diseñaron desde el principio con la idea de reducir vulnerabilidades comunes, especialmente las relacionadas con la memoria. Por otro lado, lenguajes clásicos como C o C++ son extremadamente potentes pero exigen mucha más experiencia y cuidado.
+
+En última instancia, elegir un lenguaje con buenas medidas de seguridad no garantiza un software seguro, pero sí proporciona una base más sólida. Como desarrolladores o administradores de sistemas, conocer estas diferencias es esencial para tomar decisiones adecuadas dependiendo del proyecto y su criticidad.
