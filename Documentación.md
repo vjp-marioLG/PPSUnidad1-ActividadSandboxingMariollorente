@@ -59,7 +59,7 @@ Se puede observar:
 ## Paso 3: Ejecutar la aplicación "lavadero" y "notas"
 
 ### Aislar la aplicación sin acceso a red ni archivos externos
-Para iniciar la app de notas en un entorno completamente aislado:
+Para iniciar las apps de lavadero y notas en un entorno completamente aislado:
 ```bash
 cd ~/PPSUnidad1-ActividadSandboxingMariollorente
 firejail --net=none --private=. python3 main_app.py
