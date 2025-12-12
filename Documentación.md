@@ -169,4 +169,3 @@ Durante esta práctica:
 ✓ Documentamos todo con capturas.  
 
 **Firejail** es indispensable para desarrolladores y profesionales de seguridad que necesitan ejecutar programas en entornos controlados.
-```
