@@ -30,7 +30,7 @@ En **Kali Linux**, primero debemos instalar Firejail y su interfaz gráfica:
 sudo apt update
 sudo apt install firejail firetools -y
 ```
-
+![Instalación_firejail](img/0.png)
 ### Comprobación de instalación
 Para asegurarnos de que Firejail está operativo:
 ```
@@ -46,8 +46,7 @@ Podemos ejecutar Python dentro de Firejail para confirmar su funcionamiento:
 ```
 firejail python3 --version
 ```
-
-📸 **Captura 1:** Verificando Python en Firejail
+![Python_firejail](img/1.png)
 
 Se puede observar:
 - Ejecución del comando `firejail python3 --version`  
@@ -73,7 +72,11 @@ firejail --net=none --private=. python3 main.py
 - `--net=none`: Bloquea cualquier conexión a Internet.  
 - `--private=.`: Crea un sistema de archivos temporal limitado al directorio actual.  
 
-📸 **Captura 2:** Ejecución de "lavadero" y "notas" en sandbox  
+![ejecucion_apps](img/2.png)
+
+---
+
+![ejecucion_apps](img/4.png)
 
 Aquí podemos ver:
 - La aplicación Gestor de Lavadero y  Notas funcionando correctamente.  
@@ -91,11 +94,14 @@ python3 main_app.py
 ```
 ```python
 python3 main.py
-````
+```
+![ejecucion_nosandbox](img/3.png)
 
-📸 **Captura 3:** Ejecución sin aislamiento  
+---
 
-**Observaciones:**
+![ejecucion_nosandbox](img/5.png)
+
+**Ahora se ve claramente**
 - La app corre directamente en el sistema.  
 - No se aplican restricciones de Firejail.  
 - El sistema tiene acceso completo a recursos.  
@@ -110,8 +116,7 @@ Firejail permite inspeccionar los procesos que se ejecutan en el sandbox:
 ```bash
 firejail --list
 ```
-
-📸 **Captura 4:** Procesos dentro del sandbox  
+![procesos_firejail](img/6.png)
 
 Se muestran:
 - PID del proceso principal (Firejail).  
@@ -126,13 +131,12 @@ Para ver cómo se organizan los procesos:
 ```bash
 firejail --tree
 ```
-
-📸 **Captura 5:** Árbol de procesos de Firejail  
+![ejecucion_nosandbox](img/7.png)  
 
 Se aprecia:
 - Estructura jerárquica de procesos.  
 - PID principal y subprocesos.  
-- Estado de los procesos (“Hecho” cuando finalizan).  
+- Estado de los procesos (Cuando finalizan).  
 
 ---
 ## Medidas de seguridad aplicadas
